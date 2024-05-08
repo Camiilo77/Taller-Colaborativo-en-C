@@ -1,0 +1,2 @@
+C:/Users/Camilo Andres/Desktop/Taller-Colaborativo-en-C/src/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Camilo Andres/Desktop/Taller-Colaborativo-en-C/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
