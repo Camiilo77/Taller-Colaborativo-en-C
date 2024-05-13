@@ -10,6 +10,7 @@ int main(void) {
     void addCharacter(char cadena[], char caracter, int posicion, int longitud);
     int integerException(int min, int max);
     char *removeDuplicateCharacters(const char inputString[]);
+    char *insertSubstring(char *baseString, char *substring, int position);
     int w = 0;
     int option = 0;
     do {
@@ -84,7 +85,32 @@ int main(void) {
             case 7:
                 break;
             case 8:
+                z = 0;
+                do {
+                    char baseString[100];
+                    char subString[100];
+                    char *newString; // Pointer to store the new string
+                    int position;
+
+                    printf("Ingrese una cadena de texto\n");
+                    scanf("%s", baseString);
+                    printf("Ingrese la cadena a agregar\n");
+                    scanf("%s", subString);
+                    printf("\nIngrese la posicion para agregar la cadena\n");
+                    fflush(stdout);
+                    position = integerException(0, 100);
+                    newString = insertSubstring(baseString, subString, position);
+                    printf("Nueva cadena: %s\n", newString);
+                    free(newString);
+                    printf("[1] Ingresar otra cadena | [2] Volver al menu inicial");
+                    int aux;
+                    aux = integerException(1, 2);
+                    if (aux == 2) {
+                        z = 1;
+                    }
+                } while (z != 1);
                 break;
+
             case 9:
                 break;
             case 0:
@@ -98,6 +124,7 @@ int main(void) {
     } while (w != 1);
 }
 
+/**Ejercicio 2*/
 //metodo para agregar caracteres dependiendo la poscicion elegida
 void addCharacter(char string[], char character, int position, int length) {
     int len = strlen(string);
@@ -117,6 +144,7 @@ void addCharacter(char string[], char character, int position, int length) {
     }
 }
 
+/**Ejercicio 6*/
 //Metodo que remueve los caracteres repetidos de una cadena
 char *removeDuplicateCharacters(const char inputString[]) {
     int i, j;
@@ -139,6 +167,33 @@ char *removeDuplicateCharacters(const char inputString[]) {
     return outputString;
 }
 
+/**Ejercicio 8*/
+//Metodo que inserta una cadena en una poscion especifica de otra
+char *insertSubstring(char *baseString, char *substring, int position) {
+    if (baseString == NULL || substring == NULL || position < 0 || position > strlen(baseString)) {
+        return NULL;
+    }
+    int baseStringLength = strlen(baseString);
+    int substringLength = strlen(substring);
+    int newStringLength = baseStringLength + substringLength + 1;
+    char *newString = (char *) malloc(newStringLength * sizeof(char));
+    if (newString == NULL) {
+        return NULL;
+    }
+    int i;
+    for (i = 0; i < position; i++) {
+        newString[i] = baseString[i];
+    }
+    for (i = 0; i < substringLength; i++) {
+        newString[position + i] = substring[i];
+    }
+    for (i = position + substringLength; i < newStringLength - 1; i++) {
+        newString[i] = baseString[i - substringLength];
+    }
+    newString[newStringLength - 1] = '\0';
+    return newString;
+}
+
 
 //Manejo de excepcion de enteros
 int integerException(int min, int max) {
@@ -159,7 +214,7 @@ int integerException(int min, int max) {
                 printf("\nNumero fuera de rango. Intente nuevamente Ingrese un numero entre %d y %d ", min, max);
             }
         } else {
-            printf("Informacion invalida. Intente nuevamente.\n");
+            printf("Ingrese un valor numerico.\n");
         }
     }
     return valor;
