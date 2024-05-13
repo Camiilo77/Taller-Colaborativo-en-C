@@ -9,6 +9,7 @@
 int main(void) {
     void addCharacter(char cadena[], char caracter, int posicion, int longitud);
     int integerException(int min, int max);
+    char *removeDuplicateCharacters(const char inputString[]);
     int w = 0;
     int option = 0;
     do {
@@ -16,8 +17,9 @@ int main(void) {
                " [2] Ej.2 \n [3] Ej.3 | [4] Ej.4\n [5] Ej.5 |"
                " [6] Ej.6 \n [7] Ej.7 | [8] Ej.8\n [9] Ej.9 | [0]. Finalizar\n");
 
-        scanf("%d", &option, integerException(0, 9));
+        option = integerException(0, 9);
         switch (option) {
+
             case 1:
                 //segundo punto
                 break;
@@ -35,21 +37,21 @@ int main(void) {
                         printf("Ingrese el caracter a rellenar\n");
                         scanf("%s", &character);
                         printf("\nIngrese [0] si rellena por izquierda o [1] si rellena por derecha\n");
-                        scanf("%d", &position, integerException(0, 1));
+                        position = integerException(0, 1);
                         printf("\ningrese el numero de caracteres que desea rellenar\n");
-                        scanf("%d", &length, integerException(1,100000));
+                        length = integerException(1, 100000);
                         addCharacter(string, character, position, length);
                         printf("La nueva cadena es: %s", string);
                         printf("\n[1] Ingresar caracteres \n[2] Volver\n");
                         int aux;
-                        scanf("%d", &aux, integerException(1,2));
+                        aux = integerException(1, 2);
                         if (aux == 2) {
                             z = 2;
                         }
                     } while (z != 2);
-                    printf("\n[1] Ingresar otra cadena \n [2] Volver al menú inicial\n");
+                    printf("\n[1] Ingresar otra cadena \n [2] Volver al menu inicial\n");
                     int aux;
-                    scanf("%d", &aux, integerException(1,2));
+                    aux = integerException(1, 2);
                     if (aux == 2) {
                         z = 1;
                     }
@@ -62,6 +64,22 @@ int main(void) {
             case 5:
                 break;
             case 6:
+                z = 0;
+                do {
+                    char inputString[100];
+                    char *outputString;
+                    printf("Ingrese una cadena de texto\n");
+                    scanf("%s", inputString);
+                    printf("\nCadena ingresada: %s", inputString);
+                    outputString = removeDuplicateCharacters(inputString);
+                    printf("\nscadena modificada sin caracteres repetidos: %s\n", outputString);
+                    printf("[1] Ingresar otra cadena | [2] Volver al menu inicial");
+                    int aux;
+                    aux = integerException(1, 2);
+                    if (aux == 2) {
+                        z = 1;
+                    }
+                } while (z != 1);
                 break;
             case 7:
                 break;
@@ -99,6 +117,29 @@ void addCharacter(char string[], char character, int position, int length) {
     }
 }
 
+//Metodo que remueve los caracteres repetidos de una cadena
+char *removeDuplicateCharacters(const char inputString[]) {
+    int i, j;
+    int len = strlen(inputString);
+    char *outputString = (char *) malloc(len + 1);
+
+    if (outputString == NULL) {
+        perror("Error al asignar memoria");
+        exit(EXIT_FAILURE);
+    }
+    char visited[256] = {0};
+    for (i = 0, j = 0; i < len; i++) {
+        if (!visited[inputString[i]]) {
+            outputString[j] = inputString[i];
+            visited[inputString[i]] = 1;
+            j++;
+        }
+    }
+    outputString[j] = '\0';
+    return outputString;
+}
+
+
 //Manejo de excepcion de enteros
 int integerException(int min, int max) {
     int valor = 0;
@@ -107,7 +148,6 @@ int integerException(int min, int max) {
     while (!valido) {
         char entrada[100];
 
-        printf("Ingrese un numero entre %d y %d: ", min, max);
         if (fgets(entrada, sizeof(entrada), stdin) == NULL) {
             perror("Error al leer la entrada");
             exit(EXIT_FAILURE);
@@ -116,7 +156,7 @@ int integerException(int min, int max) {
             if (valor >= min && valor <= max) {
                 valido = 1;
             } else {
-                printf("Numero fuera de rango. Intente nuevamente.\n");
+                printf("\nNumero fuera de rango. Intente nuevamente Ingrese un numero entre %d y %d ", min, max);
             }
         } else {
             printf("Informacion invalida. Intente nuevamente.\n");
