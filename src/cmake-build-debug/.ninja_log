@@ -1,0 +1,25 @@
+# ninja log v5
+12	268	7373210408883274	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+35	2186	7373197340191101	CMakeFiles/Taller-Colaborativo-en-C.dir/Controller.c.obj	b18f4b8700b33c9c
+271	640	7373210412484884	Taller-Colaborativo-en-C.exe	7e9c80d7628b7f98
+10	594	7373213701709820	build.ninja	cedab04fa4c2f904
+12	268	7373213705407114	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+271	605	7373213708662408	Taller-Colaborativo-en-C.exe	c66038ef06afbd18
+13	256	7373215434837656	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+258	589	7373215438051213	Taller-Colaborativo-en-C.exe	c66038ef06afbd18
+15	279	7373218389258681	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+282	610	7373218392442406	Taller-Colaborativo-en-C.exe	c66038ef06afbd18
+13	270	7373219944868930	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+272	603	7373219948182159	Taller-Colaborativo-en-C.exe	c66038ef06afbd18
+13	263	7373221696642106	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+266	591	7373221699775906	Taller-Colaborativo-en-C.exe	c66038ef06afbd18
+24	284	7373222066103073	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+286	593	7373222069083896	Taller-Colaborativo-en-C.exe	c66038ef06afbd18
+13	288	7373223567821051	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+290	660	7373223571430142	Taller-Colaborativo-en-C.exe	c66038ef06afbd18
+13	279	7373226008496555	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+282	631	7373226011854592	Taller-Colaborativo-en-C.exe	c66038ef06afbd18
+13	311	7373233338426032	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+313	651	7373233341709232	Taller-Colaborativo-en-C.exe	c66038ef06afbd18
+14	308	7373234108113475	CMakeFiles/Taller-Colaborativo-en-C.dir/Main.c.obj	ae9d1865700e17b8
+311	697	7373234111879221	Taller-Colaborativo-en-C.exe	c66038ef06afbd18

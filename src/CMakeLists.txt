@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(Taller-Colaborativo-en-C
         Main.c
-Controller.c)
+)
