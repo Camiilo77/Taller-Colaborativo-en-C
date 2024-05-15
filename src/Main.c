@@ -9,6 +9,12 @@ int main(void) {
     int integerException(int min, int max);
     char *removeDuplicateCharacters(const char inputString[]);
     char *insertSubstring(char *baseString, char *substring, int position);
+    char* obtenerSubcadena(const char cadena[], int inicio, int fin);
+    int cadenaEmpiezaCon(const char cadenaBase[], const char cadenaVerificar[]);
+    char* diferenciaCadenas(const char cadena1[], const char cadena2[]);
+    char cadena[100]; // Definir una cadena de longitud arbitraria
+    int inicio, fin;
+    char cadenaBase[100], cadenaVerificar[100], diferencia[100];
     int w = 0;
     int option = 0;
     do {
@@ -57,10 +63,39 @@ int main(void) {
                 } while (z != 1);
                 break;
             case 3:
+
+                // Ingresar cadena
+                printf("Ingrese una cadena: ");
+                scanf("%s", cadena);
+
+                // Ingresar posiciones de inicio y fin para obtener subcadena
+                printf("Ingrese posicion inicial y posicion final (0 para final): ");
+                printf("\nInicio: ");
+                scanf("%d", &inicio);
+                printf("\nFin: ");
+                scanf("%d",&fin);
+
+                // Obtener subcadena
+                char *subcadena = obtenerSubcadena(cadena, inicio, fin);
+                printf("Subcadena obtenida: %s\n", subcadena);
+
+                // Liberar memoria asignada a la subcadena
+                free(subcadena);
                 break;
             case 4:
                 break;
             case 5:
+                // Punto //quinto punto: Validar si una cadena inicia con otra
+                printf("Ingrese la cadena base: ");
+                scanf("%s", cadenaBase);
+                printf("Ingrese la cadena a verificar: ");
+                scanf("%s", cadenaVerificar);
+
+                int resultado = cadenaEmpiezaCon(cadenaBase, cadenaVerificar);
+                if (resultado)
+                    printf("La cadena base empieza con la cadena a verificar.\n");
+                else
+                    printf("La cadena base no empieza con la cadena a verificar.\n");
                 break;
             case 6:
                 z = 0;
@@ -81,6 +116,17 @@ int main(void) {
                 } while (z != 1);
                 break;
             case 7:
+                // Punto //septimo punto: Realizar operación de diferencia entre dos cadenas
+                printf("Ingrese la primera cadena: ");
+                scanf("%s", cadenaBase);
+                printf("Ingrese la segunda cadena: ");
+                scanf("%s", cadenaVerificar);
+
+                char *diferenciaCadena = diferenciaCadenas(cadenaBase, cadenaVerificar);
+                printf("La diferencia entre las cadenas es: %s\n", diferenciaCadena);
+
+                // Liberar memoria asignada a la diferencia de cadenas
+                free(diferenciaCadena);
                 break;
             case 8:
                 z = 0;
@@ -142,6 +188,37 @@ void addCharacter(char string[], char character, int position, int length) {
     }
 }
 
+/**Ejercicio 3*/
+// Función para obtener una subcadena de una cadena dada
+char* obtenerSubcadena(const char cadena[], int inicio, int fin) {
+    int longitud = strlen(cadena);
+    char *subcadena;
+
+    // Validar posiciones
+    if (inicio < 0 || inicio >= longitud || fin < 0 || fin >= longitud || inicio > fin) {
+        printf("Error: Posiciones de inicio y/o fin inválidas.\n");
+        return NULL;
+    }
+
+    // Calcular longitud de la subcadena
+    int subLongitud = (fin == 0) ? longitud - inicio : fin - inicio + 1;
+
+    // Asignar memoria para la subcadena
+    subcadena = (char *)malloc(sizeof(char) * (subLongitud + 1)); // +1 para el terminador nulo
+
+    // Copiar subcadena
+    strncpy(subcadena, cadena + inicio, subLongitud);
+    subcadena[subLongitud] = '\0'; // Terminador nulo
+
+    return subcadena;
+}
+
+/**Ejercicio 5*/
+// Función para validar si una cadena inicia con otra
+int cadenaEmpiezaCon(const char cadenaBase[], const char cadenaVerificar[]) {
+    return strncmp(cadenaBase, cadenaVerificar, strlen(cadenaVerificar)) == 0;
+}
+
 /**Ejercicio 6*/
 //Metodo que remueve los caracteres repetidos de una cadena
 char *removeDuplicateCharacters(const char inputString[]) {
@@ -163,6 +240,30 @@ char *removeDuplicateCharacters(const char inputString[]) {
     }
     outputString[j] = '\0';
     return outputString;
+}
+
+/**Ejercicio 7*/
+// Función para realizar la diferencia entre dos cadenas
+char* diferenciaCadenas(const char cadena1[], const char cadena2[]) {
+    char diferencia[100]; // Supongamos que la longitud máxima de las cadenas es de 100 caracteres
+    int diferenciaIndex = 0;
+
+    // Marcar caracteres de cadena2
+    int marcado[256] = {0}; // Suponemos un conjunto de caracteres ASCII extendido
+
+    for (int i = 0; i < strlen(cadena2); i++) {
+        marcado[(int)cadena2[i]] = 1;
+    }
+
+    // Construir la diferencia
+    for (int i = 0; i < strlen(cadena1); i++) {
+        if (!marcado[(int)cadena1[i]]) {
+            diferencia[diferenciaIndex++] = cadena1[i];
+        }
+    }
+    diferencia[diferenciaIndex] = '\0'; // Terminador nulo
+
+    return strdup(diferencia); // Devolvemos una copia de la diferencia
 }
 
 /**Ejercicio 8*/
